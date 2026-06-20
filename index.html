@@ -20,7 +20,7 @@
       border-radius: 20px;
       padding: 14px 24px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      animation: fall 14s linear forwards; /* ไหลช้าลง */
+      animation: fall 12s linear forwards;
       text-align: center;
     }
     @keyframes fall {
@@ -83,11 +83,7 @@
       "รักที่สุดในโลก 🌎❤️",
       "คือคนสำคัญที่สุด 💓",
       "ไกด์รักเปาที่สุ้ดดดดด 💖",
-      "❤️",
-      "💕",
-      "🌹",
-      "✨",
-      "🎉"
+      "❤️", "💕", "🌹", "✨", "🎉"
     ];
 
     let lastMessage = null;
@@ -104,24 +100,25 @@
       text.innerText = msg;
       text.style.left = Math.random() * (window.innerWidth - 200) + "px";
 
-      // ขนาดสุ่มไม่เท่ากัน
-      const sizes = [28, 32, 36, 40, 44];
+      // สุ่มขนาดตัวหนังสือให้ไม่เท่ากัน
+      const sizes = [28, 32, 36, 40, 46, 52];
       text.style.fontSize = sizes[Math.floor(Math.random() * sizes.length)] + "px";
 
       document.body.appendChild(text);
 
       setTimeout(() => {
         text.remove();
-      }, 14000);
+      }, 12000);
     }
 
-    setInterval(createFallingText, 1800);
+    // ปรับให้ข้อความไหลไวขึ้น (ทุก 1000ms)
+    setInterval(createFallingText, 1000);
 
     function agree() {
       Swal.fire({
         title: "🎉 ดีใจที่สุดเลย 💖",
         html: `
-          <h2 style="color:#ff3f6f; font-size:38px; margin-bottom:10px;">
+          <h2 style="color:#ff3f6f; font-size:40px; margin-bottom:10px;">
             ไกด์รักเปาที่สุ้ดดดดด 💖
           </h2>
           <p style="color:#ff6f91; font-size:28px;">
@@ -135,7 +132,7 @@
         confirmButtonColor: "#ff3f6f"
       });
 
-      for (let i = 0; i < 120; i++) {
+      for (let i = 0; i < 150; i++) {
         const confetti = document.createElement("div");
         confetti.className = "confetti";
         confetti.style.left = Math.random() * window.innerWidth + "px";
