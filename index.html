@@ -2,11 +2,11 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title>ง้อแฟน 💓</title>
+  <title>ง้อเปา 💓 จากไกด์</title>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     body {
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      background: linear-gradient(135deg, #ffe0f0, #ffc2d1, #ffb6c1);
       overflow: hidden;
       height: 100vh;
       margin: 0;
@@ -14,16 +14,16 @@
     }
     .falling-text {
       position: absolute;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
       color: #ff3f6f;
-      background: rgba(255,255,255,0.95);
-      border-radius: 15px;
-      padding: 8px 15px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 20px;
+      padding: 10px 18px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
       animation: fall 6s linear forwards;
       text-align: center;
-      min-width: 120px;
+      min-width: 140px;
     }
     @keyframes fall {
       0% { transform: translateY(-50px); opacity: 1; }
@@ -31,31 +31,32 @@
     }
     .buttons {
       position: fixed;
-      bottom: 20px;
+      bottom: 40px;
       width: 100%;
       text-align: center;
     }
     .btn {
-      padding: 12px 25px;
-      margin: 10px;
+      padding: 25px 50px;
+      margin: 15px;
       border: none;
-      border-radius: 10px;
-      font-size: 18px;
+      border-radius: 20px;
+      font-size: 24px;
       cursor: pointer;
       color: white;
       transition: all 0.3s ease;
     }
     .btn-yes {
       background: #ff6f91;
+      box-shadow: 0 0 20px #ff6f91;
     }
     .btn-no {
       background: #555;
+      box-shadow: 0 0 20px #333;
     }
-    /* confetti */
     .confetti {
       position: fixed;
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       background-color: red;
       animation: confetti-fall 2s linear forwards;
     }
@@ -73,13 +74,16 @@
 
   <script>
     const messages = [
-      "เค้าขอโทดดดด 💕",
-      "มาง้ออออ 🌹",
-      "คืนดีกานนน 💖",
-      "เค้ารักอ้วนที่สุดดดด 💘",
-      "จะไม่ทำให้เสียใจอีกนะ 🌸",
+      "เค้าขอโทษนะ 💕",
+      "อย่าโกรธเค้าเลยนะ 🌹",
+      "คืนดีกันนะ 💖",
+      "รักที่สุดเลย 💘",
+      "งอนเค้าได้แต่ห้ามไปไหนนะ 🌸",
       "อยู่ด้วยกันตลอดไปนะ 💞",
-      "รักเธอที่สุดในโลก 🌎❤️"
+      "คือความสุขของเค้า 🌈",
+      "เค้าสัญญาจะดูแลเสมอ 🤍",
+      "รักที่สุดในโลก 🌎❤️",
+      "คือคนสำคัญที่สุด 💓"
     ];
 
     function createFallingText() {
@@ -94,18 +98,16 @@
       }, 6000);
     }
 
-    // ให้ข้อความตกลงมาต่อเนื่อง
-    setInterval(createFallingText, 800);
+    setInterval(createFallingText, 1000);
 
-    // เมื่อกดคืนดี → หน้าต่างดีใจ + confetti รอบๆ
     function agree() {
       Swal.fire({
         title: "🎉 ดีใจที่สุดเลย 💖",
         html: `
-          <h2 style="color:#ff3f6f; font-size:26px; margin-bottom:10px;">
-            รักเธอที่สุดในโลก 🌎❤️
+          <h2 style="color:#ff3f6f; font-size:28px; margin-bottom:10px;">
+            ไกด์รักเปาที่สุ้ดดดดด 💖
           </h2>
-          <p style="color:#ff6f91; font-size:20px;">
+          <p style="color:#ff6f91; font-size:22px;">
             อยู่ด้วยกันตลอดไปนะ 💞
           </p>
         `,
@@ -116,15 +118,13 @@
         confirmButtonColor: "#ff3f6f"
       });
 
-      // สร้าง confetti แตกกระจายรอบๆ popup
-      for (let i = 0; i < 80; i++) {
+      for (let i = 0; i < 100; i++) {
         const confetti = document.createElement("div");
         confetti.className = "confetti";
         confetti.style.left = Math.random() * window.innerWidth + "px";
         confetti.style.top = Math.random() * window.innerHeight + "px";
         confetti.style.backgroundColor = randomColor();
         document.body.appendChild(confetti);
-
         setTimeout(() => confetti.remove(), 2000);
       }
     }
@@ -134,17 +134,14 @@
       return colors[Math.floor(Math.random() * colors.length)];
     }
 
-    // เมื่อกดไม่คืนดี → ปุ่มคืนดีใหญ่ขึ้นเรื่อยๆ
     function disagree() {
       const yesBtn = document.getElementById("yesBtn");
       let currentSize = parseInt(window.getComputedStyle(yesBtn).fontSize);
       let currentPadding = parseInt(window.getComputedStyle(yesBtn).padding);
 
-      // ขยายปุ่มเร็วขึ้น
       yesBtn.style.fontSize = (currentSize + 20) + "px";
       yesBtn.style.padding = (currentPadding + 15) + "px " + (currentPadding + 40) + "px";
 
-      // ถ้าใหญ่จนเต็มจอ → ปุ่มไม่คืนดีจะหายไป
       if (currentSize > 60) {
         document.getElementById("noBtn").style.display = "none";
         yesBtn.style.position = "fixed";
