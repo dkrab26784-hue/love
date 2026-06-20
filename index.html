@@ -14,16 +14,16 @@
     }
     .falling-text {
       position: absolute;
-      font-size: 28px; /* ใหญ่ขึ้น */
+      font-size: 30px; /* ใหญ่พอดีกับมือถือ */
       font-weight: bold;
       color: #ff3f6f;
       background: rgba(255,255,255,0.9);
       border-radius: 20px;
-      padding: 12px 22px;
+      padding: 14px 24px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      animation: fall 10s linear forwards; /* ไหลช้าลง */
+      animation: fall 12s linear forwards; /* ไหลช้าลง */
       text-align: center;
-      min-width: 160px;
+      min-width: 180px;
     }
     @keyframes fall {
       0% { transform: translateY(-50px); opacity: 1; }
@@ -31,16 +31,16 @@
     }
     .buttons {
       position: fixed;
-      bottom: 40px;
+      bottom: 50px;
       width: 100%;
       text-align: center;
     }
     .btn {
-      padding: 30px 60px; /* ปุ่มใหญ่ขึ้น */
-      margin: 15px;
+      padding: 35px 70px;
+      margin: 20px;
       border: none;
       border-radius: 25px;
-      font-size: 26px;
+      font-size: 28px;
       cursor: pointer;
       color: white;
       transition: all 0.3s ease;
@@ -55,10 +55,10 @@
     }
     .confetti {
       position: fixed;
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
       background-color: red;
-      animation: confetti-fall 3s linear forwards; /* confetti ไหลช้าลง */
+      animation: confetti-fall 4s linear forwards;
     }
     @keyframes confetti-fall {
       0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
@@ -83,31 +83,44 @@
       "คือความสุขของเค้า 🌈",
       "เค้าสัญญาจะดูแลเสมอ 🤍",
       "รักที่สุดในโลก 🌎❤️",
-      "คือคนสำคัญที่สุด 💓"
+      "คือคนสำคัญที่สุด 💓",
+      "ไกด์รักเปาที่สุ้ดดดดด 💖",
+      "ไม่อยากเสียเปาไปเลย 💔",
+      "เค้าจะเป็นคนดีขึ้นเพื่อเปา 🌷",
+      "เปาคือกำลังใจของเค้า 🌟",
+      "รักเปามากกว่าที่พูดได้ 💞"
     ];
 
+    let lastMessage = null;
+
     function createFallingText() {
+      let msg;
+      do {
+        msg = messages[Math.floor(Math.random() * messages.length)];
+      } while (msg === lastMessage); // ห้ามซ้ำกับข้อความล่าสุด
+      lastMessage = msg;
+
       const text = document.createElement("div");
       text.className = "falling-text";
-      text.innerText = messages[Math.floor(Math.random() * messages.length)];
-      text.style.left = Math.random() * (window.innerWidth - 160) + "px";
+      text.innerText = msg;
+      text.style.left = Math.random() * (window.innerWidth - 180) + "px";
       document.body.appendChild(text);
 
       setTimeout(() => {
         text.remove();
-      }, 10000); // อยู่บนจอนานขึ้น
+      }, 12000);
     }
 
-    setInterval(createFallingText, 1500); // ข้อความตกลงมาช้าลง
+    setInterval(createFallingText, 2000);
 
     function agree() {
       Swal.fire({
         title: "🎉 ดีใจที่สุดเลย 💖",
         html: `
-          <h2 style="color:#ff3f6f; font-size:32px; margin-bottom:10px;">
+          <h2 style="color:#ff3f6f; font-size:34px; margin-bottom:10px;">
             ไกด์รักเปาที่สุ้ดดดดด 💖
           </h2>
-          <p style="color:#ff6f91; font-size:24px;">
+          <p style="color:#ff6f91; font-size:26px;">
             อยู่ด้วยกันตลอดไปนะ 💞
           </p>
         `,
@@ -118,14 +131,14 @@
         confirmButtonColor: "#ff3f6f"
       });
 
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 120; i++) {
         const confetti = document.createElement("div");
         confetti.className = "confetti";
         confetti.style.left = Math.random() * window.innerWidth + "px";
         confetti.style.top = Math.random() * window.innerHeight + "px";
         confetti.style.backgroundColor = randomColor();
         document.body.appendChild(confetti);
-        setTimeout(() => confetti.remove(), 3000);
+        setTimeout(() => confetti.remove(), 4000);
       }
     }
 
