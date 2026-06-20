@@ -14,16 +14,14 @@
     }
     .falling-text {
       position: absolute;
-      font-size: 30px; /* ใหญ่พอดีกับมือถือ */
       font-weight: bold;
       color: #ff3f6f;
       background: rgba(255,255,255,0.9);
       border-radius: 20px;
       padding: 14px 24px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      animation: fall 12s linear forwards; /* ไหลช้าลง */
+      animation: fall 14s linear forwards; /* ไหลช้าลง */
       text-align: center;
-      min-width: 180px;
     }
     @keyframes fall {
       0% { transform: translateY(-50px); opacity: 1; }
@@ -85,10 +83,11 @@
       "รักที่สุดในโลก 🌎❤️",
       "คือคนสำคัญที่สุด 💓",
       "ไกด์รักเปาที่สุ้ดดดดด 💖",
-      "ไม่อยากเสียเปาไปเลย 💔",
-      "เค้าจะเป็นคนดีขึ้นเพื่อเปา 🌷",
-      "เปาคือกำลังใจของเค้า 🌟",
-      "รักเปามากกว่าที่พูดได้ 💞"
+      "❤️",
+      "💕",
+      "🌹",
+      "✨",
+      "🎉"
     ];
 
     let lastMessage = null;
@@ -97,30 +96,35 @@
       let msg;
       do {
         msg = messages[Math.floor(Math.random() * messages.length)];
-      } while (msg === lastMessage); // ห้ามซ้ำกับข้อความล่าสุด
+      } while (msg === lastMessage);
       lastMessage = msg;
 
       const text = document.createElement("div");
       text.className = "falling-text";
       text.innerText = msg;
-      text.style.left = Math.random() * (window.innerWidth - 180) + "px";
+      text.style.left = Math.random() * (window.innerWidth - 200) + "px";
+
+      // ขนาดสุ่มไม่เท่ากัน
+      const sizes = [28, 32, 36, 40, 44];
+      text.style.fontSize = sizes[Math.floor(Math.random() * sizes.length)] + "px";
+
       document.body.appendChild(text);
 
       setTimeout(() => {
         text.remove();
-      }, 12000);
+      }, 14000);
     }
 
-    setInterval(createFallingText, 2000);
+    setInterval(createFallingText, 1800);
 
     function agree() {
       Swal.fire({
         title: "🎉 ดีใจที่สุดเลย 💖",
         html: `
-          <h2 style="color:#ff3f6f; font-size:34px; margin-bottom:10px;">
+          <h2 style="color:#ff3f6f; font-size:38px; margin-bottom:10px;">
             ไกด์รักเปาที่สุ้ดดดดด 💖
           </h2>
-          <p style="color:#ff6f91; font-size:26px;">
+          <p style="color:#ff6f91; font-size:28px;">
             อยู่ด้วยกันตลอดไปนะ 💞
           </p>
         `,
